@@ -87,6 +87,13 @@
     </section>
   </main>
 
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "644c198462a34fdf822e0f93ef0edd82"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
   <script>
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
@@ -99,9 +106,90 @@
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
-
+    TrackJS.track('Testing TrackJS!');                    
     // Start your code here
     // You may move this JS to another file if you wish
+    errorBtns[0].addEventListener('click', event =>{
+      console.log("console log some");
+    });
+    errorBtns[1].addEventListener('click', event =>{
+      console.error("console error some");
+    });
+    errorBtns[2].addEventListener('click', event =>{
+      console.count("console count some");
+    });
+    errorBtns[3].addEventListener('click', event =>{
+      console.warn("console warn some");
+    });
+    errorBtns[4].addEventListener('click', event =>{
+      console.assert( 3 === 4, "console assert");
+    });
+    errorBtns[5].addEventListener('click', event =>{
+      console.clear();
+    });
+    errorBtns[6].addEventListener('click', event =>{
+      console.dir(form);
+    });
+    errorBtns[7].addEventListener('click', event =>{
+      console.dirxml(errorBtns);
+    });
+    errorBtns[8].addEventListener('click', event =>{
+      console.group("group start");
+    });
+    errorBtns[9].addEventListener('click', event =>{
+      console.groupEnd("group end");
+    });
+    errorBtns[10].addEventListener('click', event =>{
+      let names = [["Alex", "loneliness"], ["Mary", "Separate"]];
+      console.table(names);
+    });
+    errorBtns[11].addEventListener('click', event =>{
+      console.time();
+    });
+    errorBtns[12].addEventListener('click', event =>{
+      console.timeEnd();
+    });
+    errorBtns[13].addEventListener('click', event =>{
+      console.trace();
+    });
+    errorBtns[14].addEventListener('click', event =>{
+      console.error("triggering a global error");
+      try{
+        let array = [1,2,3,0,9];
+        const a = 0;
+        for(let ele in array){
+          a += a / ele;
+        }
+      }
+      catch(err){
+        console.error("error triggered");
+      }
+      finally{
+        console.log("continues, error catched")
+      }
+    });
+    class myError extends Error{
+      constructor(message){
+        super(message);
+        this.name = "my error type";
+      }
+    }
+
+    function throwError(){
+      throw new myError("my err");
+    }
+
+    try {
+      throwError();
+    }
+    catch(err){
+      console.error("error caught" + err);
+    }
+    finally{
+      console.log("all errors are handled");
+    }
+
+    window.onerror = f
   </script>
 </body>
 
