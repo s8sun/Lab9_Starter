@@ -93,8 +93,10 @@
       token: "644c198462a34fdf822e0f93ef0edd82"
       // for more configuration options, see https://docs.trackjs.com
     });
+      
   </script>
   <script>
+    TrackJS.track('Testing TrackJS!'); 
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
       e.preventDefault();
@@ -106,7 +108,7 @@
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
-    TrackJS.track('Testing TrackJS!');                    
+                     
     // Start your code here
     // You may move this JS to another file if you wish
     errorBtns[0].addEventListener('click', event =>{
